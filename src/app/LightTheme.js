@@ -4,7 +4,17 @@ import { createMuiTheme, responsiveFontSizes } from "@material-ui/core/styles";
 const breakpoints = createBreakpoints({});
 
 let theme = createMuiTheme({
-  palette: {},
+  palette: {
+    primary: {
+      main: "#51c4d3",
+    },
+    secondary: {
+      main: "#e93b81",
+    },
+    background: {
+      main: "#d8e3e7",
+    },
+  },
 
   typography: {
     fontFamily: "'Oxygen', sans-serif",
@@ -14,6 +24,16 @@ let theme = createMuiTheme({
     Container: {
       content: {
         maxWidth: 1430,
+      },
+    },
+
+    MuiButton: {
+      root: {
+        fontWeight: "bold",
+        fontSize: "1rem",
+        textTransform: "none",
+        borderRadius: "5px",
+        padding: "8px 16px",
       },
     },
 
