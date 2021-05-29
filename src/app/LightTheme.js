@@ -59,6 +59,11 @@ let theme = createMuiTheme({
 
         a: {
           textDecoration: "none",
+          color: "#666666",
+
+          "&:hover": {
+            textDecoration: "underline",
+          },
         },
       },
     },
