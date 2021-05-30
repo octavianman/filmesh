@@ -11,12 +11,13 @@ import LightTheme from "./LightTheme";
 import reducers from "../store/reducers";
 
 import MainContainer from "../components/common/MainContainer";
+import Navbar from "../components/Navbar/Navbar";
 import PrivateRoute from "../components/common/PrivateRoute";
 
-import Home from "../components/Home/Home";
-
 const pages = {
+  discoverList: lazy(() => import("../components/Discover/DiscoverList")),
   home: lazy(() => import("../components/Home/Home")),
+  movie: lazy(() => import("../components/Movie/Movie")),
   signIn: lazy(() => import("../components/Auth/SignIn")),
   signUp: lazy(() => import("../components/Auth/SignUp")),
 };
@@ -45,10 +46,21 @@ const App = () => {
               <Switch>
                 <Route path="/signin" component={pages.signIn} exact />
                 <Route path="/signup" component={pages.signUp} exact />
-                <PrivateRoute path="/" exact>
-                  <Home />
+
+                <PrivateRoute path="/">
+                  <Navbar />
+
+                  <Switch>
+                    <Route path="/" component={pages.home} exact />
+                    <Route
+                      path="/discover/:genre"
+                      component={pages.discoverList}
+                      exact
+                    />
+                    <Route path="/movie/:id" component={pages.movie} exact />
+                    <Redirect to="/404" />
+                  </Switch>
                 </PrivateRoute>
-                <Redirect to="/404" />
               </Switch>
             </Suspense>
           </MainContainer>

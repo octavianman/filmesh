@@ -7,17 +7,65 @@ let theme = createMuiTheme({
   palette: {
     primary: {
       main: "#51c4d3",
+      dark: "#132c33",
     },
     secondary: {
-      main: "#e93b81",
+      main: "#AF4D98",
     },
     background: {
       main: "#d8e3e7",
+    },
+    text: {
+      opacity: "rgba(19, 44, 51, .4)",
     },
   },
 
   typography: {
     fontFamily: "'Oxygen', sans-serif",
+
+    body1: {
+      fontSize: "1.2rem",
+    },
+
+    body2: {
+      fontSize: "1rem",
+    },
+
+    h1: {
+      fontWeight: "700",
+      fontSize: "4.5rem",
+      color: "#132c33",
+    },
+
+    h2: {
+      fontWeight: "700",
+      fontSize: "2.4rem",
+      color: "#132c33",
+    },
+
+    h3: {
+      fontWeight: "700",
+      fontSize: "2rem",
+      color: "#132c33",
+    },
+
+    h4: {
+      fontWeight: "700",
+      fontSize: "1.6rem",
+      color: "#132c33",
+    },
+
+    h5: {
+      fontWeight: "700",
+      fontSize: "1.4rem",
+      color: "#132c33",
+    },
+
+    h6: {
+      fontWeight: "bold",
+      fontSize: "1.3rem",
+      color: "#132c33",
+    },
   },
 
   overrides: {

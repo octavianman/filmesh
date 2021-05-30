@@ -5,7 +5,6 @@ import { Box } from "@material-ui/core";
 
 const useStyle = makeStyles((theme) => ({
   wrapper: {
-    padding: theme.spacing(3),
     // marginTop: theme.overrides.Header.maxHeight,
     maxWidth: theme.overrides.Container.content.maxWidth,
     // minHeight: `calc(100vh - ${theme.overrides.Header.maxHeight}px)`,
@@ -23,7 +22,9 @@ const MainContainer = (props) => {
 
   return (
     <main>
-      <Box className={classes.wrapper}>{props.children}</Box>
+      <Box className={classes.wrapper} px={3}>
+        {props.children}
+      </Box>
     </main>
   );
 };
