@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useHistory } from "react-router-dom";
 import Firebase, { db } from "../../services/firebase";
 
@@ -49,6 +49,14 @@ const SignUp = () => {
       }
     }
   };
+
+  useEffect(() => {
+    Firebase.auth().onAuthStateChanged((user) => {
+      if (user) {
+        history.replace("/");
+      }
+    });
+  }, [history]);
 
   return (
     <Container maxWidth="sm">
