@@ -12,11 +12,6 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-const truncateString = (string, num) => {
-  if (!string || string.length <= num) return string;
-  else return string.slice(0, num) + "...";
-};
-
 const MoviePanel = (props) => {
   const classes = useStyle();
   const { movie } = props;
@@ -46,7 +41,7 @@ const MoviePanel = (props) => {
 
       <Box mt={1}>
         <Typography variant="body1">
-          {truncateString(movie.overview, 100)}
+          {movie.overview.substring(0, 100)}...
         </Typography>
       </Box>
 
