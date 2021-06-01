@@ -4,7 +4,7 @@ import axios from "axios";
 import genreToId from "./constants/genreToId.constant";
 import MoviePanel from "./MoviePanel";
 
-import { Box, Grid, Typography } from "@material-ui/core";
+import { Box, Button, Grid, Typography } from "@material-ui/core";
 
 const renderedGenre = (genre) => {
   return genre.charAt(0).toUpperCase() + genre.slice(1);
@@ -47,7 +47,7 @@ const DiscoverList = (props) => {
   });
 
   return (
-    <Box mt="70px" pt={3} pb={10}>
+    <Box mt="70px" pt={3} pb={12}>
       <Box mb={4}>
         <Typography variant="h2" align="center">
           {renderedGenre(genre)} movies
@@ -57,6 +57,18 @@ const DiscoverList = (props) => {
       <Grid container spacing={5}>
         {renderedMovies}
       </Grid>
+
+      <Typography align="center">
+        <Box mt={6}>
+          <Button
+            variant="outlined"
+            color="primary"
+            onClick={() => setCurrentPage(currentPage + 1)}
+          >
+            Load more
+          </Button>
+        </Box>
+      </Typography>
     </Box>
   );
 };

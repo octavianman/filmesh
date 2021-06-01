@@ -83,6 +83,14 @@ let theme = createMuiTheme({
         borderRadius: "5px",
         padding: "8px 16px",
       },
+
+      outlinedPrimary: {
+        color: "#51c4d3",
+        borderColor: "#51c4d3",
+        padding: "10px 16px",
+        fontSize: "1.1rem",
+        minWidth: "12rem",
+      },
     },
 
     MuiOutlinedInput: {
