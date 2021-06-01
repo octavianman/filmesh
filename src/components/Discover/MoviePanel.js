@@ -46,7 +46,7 @@ const MoviePanel = (props) => {
       </Box>
 
       <Box mt={1}>
-        <Link to="">
+        <Link to={`/movie/${movie.id}`}>
           <Typography variant="body1" align="right" component="div">
             <Box color="primary.main">...see more</Box>
           </Typography>

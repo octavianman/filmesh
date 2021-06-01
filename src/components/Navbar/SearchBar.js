@@ -7,13 +7,22 @@ import { SearchIcon } from "../common/icons";
 import SearchBarMovie from "./SearchBarMovie";
 
 import { makeStyles } from "@material-ui/core/styles";
-import { Box, ClickAwayListener, TextField } from "@material-ui/core";
+import {
+  Box,
+  ClickAwayListener,
+  TextField,
+  Typography,
+} from "@material-ui/core";
 
 const useStyle = makeStyles((theme) => ({
   searchInput: {
     "& .MuiInputBase-input": {
       padding: "12px 14px",
     },
+  },
+
+  textField: {
+    boxShadow: "0px 4px 11px rgba(18, 22, 77, 0.2)",
   },
 }));
 
@@ -66,6 +75,7 @@ const SearchBar = () => {
       <ClickAwayListener onClickAway={() => setOpen(false)}>
         <Box position="relative">
           <TextField
+            className={classes.textField}
             value={searchValue}
             variant="outlined"
             fullWidth
@@ -86,11 +96,28 @@ const SearchBar = () => {
               borderRadius="10px"
               position="absolute"
               width="100%"
-              bottom="-55.5rem"
+              bottom={`${-11.2 * moviesToShow.lenth}rem`}
               left="0"
               zIndex={10}
+              boxShadow="0px 4px 11px rgba(18, 22, 77, 0.2)"
             >
               {renderedMovies}
+            </Box>
+          )}
+
+          {open && moviesToShow.length === 0 && searchValue && (
+            <Box
+              position="absolute"
+              width="100%"
+              left="0"
+              bottom="-4.7rem"
+              bgcolor="common.white"
+              borderRadius="10px"
+              zIndex={10}
+              p={2}
+              boxShadow="0px 4px 11px rgba(18, 22, 77, 0.2)"
+            >
+              <Typography variant="h6">No results found.</Typography>
             </Box>
           )}
         </Box>

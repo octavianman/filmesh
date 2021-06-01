@@ -1,5 +1,7 @@
 import React from "react";
 
+import { ImageIcon } from "../common/icons";
+
 import { makeStyles } from "@material-ui/core/styles";
 import { Avatar, Box, Typography } from "@material-ui/core";
 
@@ -35,7 +37,6 @@ const SearchBarMovie = (props) => {
   return (
     <Box
       className={classes.root}
-      height="11rem"
       borderRadius={`${
         first ? "10px 10px 0px 0px" : last ? "0px 0px 10px 10px" : ""
       }`}
@@ -45,7 +46,9 @@ const SearchBarMovie = (props) => {
         alt="Movie poster"
         className={classes.image}
         variant="square"
-      ></Avatar>
+      >
+        <ImageIcon />
+      </Avatar>
 
       <Box ml={2}>
         <Typography variant="h6">{movie.title}</Typography>
