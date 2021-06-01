@@ -1,4 +1,4 @@
-import React, { lazy, Suspense, useEffect } from "react";
+import React, { lazy, Suspense, useEffect, useState } from "react";
 import { BrowserRouter, Redirect, Route, Switch } from "react-router-dom";
 import { useDispatch } from "react-redux";
 import Firebase from "../services/firebase";
@@ -28,11 +28,15 @@ export const store = createReduxStore(reducers);
 const App = () => {
   const dispatch = useDispatch();
 
+  const [loading, setLoading] = useState(true);
+
   useEffect(() => {
     Firebase.auth().onAuthStateChanged((user) => {
       if (user) {
         dispatch(getUser(user));
       }
+
+      setLoading(false);
     });
   }, [dispatch]);
 
@@ -48,7 +52,7 @@ const App = () => {
                 <Route path="/signin" component={pages.signIn} exact />
                 <Route path="/signup" component={pages.signUp} exact />
 
-                <PrivateRoute path="/">
+                <PrivateRoute loading={loading} path="/">
                   <Navbar />
 
                   <Switch>

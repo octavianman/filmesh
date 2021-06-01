@@ -63,7 +63,9 @@ const Navbar = () => {
 
           <Box display="flex">
             <Box mr={3}>
-              <Typography variant="h6">Watchlist</Typography>
+              <Link to="/watchlist">
+                <Typography variant="h6">Watchlist</Typography>
+              </Link>
             </Box>
             <Box onClick={logoutHandler} className={classes.pointer}>
               <Typography variant="h6">Logout</Typography>

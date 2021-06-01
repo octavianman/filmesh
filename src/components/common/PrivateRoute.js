@@ -3,8 +3,10 @@ import { Route, Redirect } from "react-router-dom";
 import { useSelector } from "react-redux";
 
 const PrivateRoute = (props) => {
-  const { children, ...rest } = props;
+  const { loading, children, ...rest } = props;
   const user = useSelector((state) => state.auth.user);
+
+  if (loading) return <div>Loading...</div>;
 
   return (
     <Route

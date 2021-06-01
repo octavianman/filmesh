@@ -47,7 +47,7 @@ const DiscoverList = (props) => {
   });
 
   return (
-    <Box mt="70px" pt={3} pb={12}>
+    <Box pt={3} pb={12}>
       <Box mb={4}>
         <Typography variant="h2" align="center">
           {renderedGenre(genre)} movies
@@ -58,7 +58,7 @@ const DiscoverList = (props) => {
         {renderedMovies}
       </Grid>
 
-      <Typography align="center">
+      <Typography align="center" component="div">
         <Box mt={6}>
           <Button
             variant="outlined"

@@ -12,7 +12,7 @@ const useStyle = makeStyles((theme) => ({
     // marginTop: theme.overrides.Header.maxHeight,
     maxWidth: theme.overrides.Container.content.maxWidth,
     // minHeight: `calc(100vh - ${theme.overrides.Header.maxHeight}px)`,
-    minHeight: "calc(100vh - 54px)",
+    minHeight: "100vh",
     margin: "0 auto",
 
     [theme.breakpoints.down("sm")]: {
@@ -26,7 +26,7 @@ const MainContainer = (props) => {
 
   return (
     <main className={classes.main}>
-      <Box className={classes.wrapper} px={3}>
+      <Box className={classes.wrapper} px={3} pt="70px">
         {props.children}
       </Box>
     </main>
