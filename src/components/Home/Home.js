@@ -1,6 +1,5 @@
 import React from "react";
 
-import SearchBar from "./SearchBar";
 import SearchByGenres from "./SearchByGenres";
 
 import { Box, Grid } from "@material-ui/core";
@@ -15,9 +14,7 @@ const Home = () => {
           </Box>
         </Grid>
 
-        <Grid item xs={12} md={9}>
-          <SearchBar />
-        </Grid>
+        <Grid item xs={12} md={9}></Grid>
       </Grid>
     </Box>
   );

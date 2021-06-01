@@ -85,6 +85,13 @@ let theme = createMuiTheme({
       },
     },
 
+    MuiOutlinedInput: {
+      root: {
+        background: "#fff",
+        borderRadius: 10,
+      },
+    },
+
     MuiCssBaseline: {
       "@global": {
         html: {

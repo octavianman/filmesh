@@ -47,7 +47,7 @@ const DiscoverList = (props) => {
   });
 
   return (
-    <Box mt="70px" py={3}>
+    <Box mt="70px" pt={3} pb={10}>
       <Box mb={4}>
         <Typography variant="h2" align="center">
           {renderedGenre(genre)} movies

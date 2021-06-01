@@ -10,6 +10,7 @@ import { getUser } from "../store/actions";
 import LightTheme from "./LightTheme";
 import reducers from "../store/reducers";
 
+import Footer from "../components/Footer/Footer";
 import MainContainer from "../components/common/MainContainer";
 import Navbar from "../components/Navbar/Navbar";
 import PrivateRoute from "../components/common/PrivateRoute";
@@ -60,6 +61,8 @@ const App = () => {
                     <Route path="/movie/:id" component={pages.movie} exact />
                     <Redirect to="/404" />
                   </Switch>
+
+                  <Footer />
                 </PrivateRoute>
               </Switch>
             </Suspense>
