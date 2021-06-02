@@ -21,6 +21,7 @@ const pages = {
   movie: lazy(() => import("../components/Movie/Movie")),
   signIn: lazy(() => import("../components/Auth/SignIn")),
   signUp: lazy(() => import("../components/Auth/SignUp")),
+  watchlist: lazy(() => import("../components/Watchlist/Watchlist")),
 };
 
 export const store = createReduxStore(reducers);
@@ -63,6 +64,11 @@ const App = () => {
                       exact
                     />
                     <Route path="/movie/:id" component={pages.movie} exact />
+                    <Route
+                      path="/watchlist"
+                      component={pages.watchlist}
+                      exact
+                    />
                     <Redirect to="/404" />
                   </Switch>
 
