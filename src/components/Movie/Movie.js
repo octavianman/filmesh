@@ -23,8 +23,6 @@ const Movie = (props) => {
 
   const [watchlistMovies, setWatchlistMovies] = useState([]);
 
-  console.log(watchlistMovies);
-
   const [movie, setMovie] = useState();
 
   useEffect(() => {
