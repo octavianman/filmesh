@@ -106,20 +106,13 @@ const Movie = (props) => {
   const id = props.match.params.id;
   const userId = useSelector((state) => state.auth.user.uid);
 
-  const [watchlistMovies, setWatchlistMovies] = useState([]);
-
-  const [movie, setMovie] = useState();
-
-  const [reviews, setReviews] = useState([]);
-  const [rating, setRating] = useState();
-
   const [dialogVisible, setDialogVisible] = useState(false);
-
   const [hasReviewed, setHasReviewed] = useState(false);
-
+  const [movie, setMovie] = useState();
+  const [rating, setRating] = useState();
+  const [reviews, setReviews] = useState([]);
   const [userProfile, setUserProfile] = useState();
-
-  console.log(reviews);
+  const [watchlistMovies, setWatchlistMovies] = useState([]);
 
   useEffect(() => {
     if (userId) {
@@ -383,15 +376,24 @@ const Movie = (props) => {
               <Box mb={3} key={review.userId}>
                 <Card>
                   <CardContent>
-                    <p>Rating: {review.rating}</p>
-                    <p>
-                      {review.userFirstName} {review.userLastName}
-                    </p>
+                    <Typography variant="h6">Rating: {rating}</Typography>
+                    <Typography variant="body2">
+                      <Box color="text.opacity">
+                        Given by: {review.userFirstName} {review.userLastName}
+                      </Box>
+                    </Typography>
+
                     <p>{review.content}</p>
                   </CardContent>
                 </Card>
               </Box>
             ))}
+
+            {reviews.length === 0 && (
+              <Box>
+                <Typography variant="h4">No reviews found.</Typography>
+              </Box>
+            )}
           </Box>
         </Grid>
       </Grid>
