@@ -1,18 +1,18 @@
 import React, { useEffect, useState } from "react";
-
-import firebase from "firebase";
-
-import axios from "axios";
-
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
-import Card from "@material-ui/core/Card";
-import CardContent from "@material-ui/core/CardContent";
-import Grid from "@material-ui/core/Grid";
-
+import firebase from "firebase";
+import axios from "axios";
 import { db } from "../../services/firebase";
 
-import { useSelector } from "react-redux";
+import {
+  Box,
+  Button,
+  Card,
+  CardContent,
+  Grid,
+  Typography,
+} from "@material-ui/core";
 
 const getMovie = async (movieId) => {
   const response = await axios.get(
@@ -54,9 +54,13 @@ const removeMovieFromWatchlist = async (userId, movieId) => {
 
 const renderGenres = (movie) => {
   return movie.genres.map((genre) => (
-    <Link to={`/discover/${genre.name.toLowerCase()}`} key={genre.id}>
-      <span style={{ margin: 5 }}>{genre.name}</span>
-    </Link>
+    <Grid item key={genre.id}>
+      <Link to={`/discover/${genre.name.toLowerCase()}`}>
+        <Typography variant="body2" component="div">
+          <Box color="text.opacity">{genre.name}</Box>
+        </Typography>
+      </Link>
+    </Grid>
   ));
 };
 
@@ -138,31 +142,42 @@ const Watchlist = () => {
                     }}
                   />
                 </Link>
-                <p style={{ fontWeight: 600 }}>{movie.title}</p>
-                {renderGenres(movie)}
-                <p
-                  style={{
-                    border: "1px solid black",
-                    borderRadius: 10,
-                    width: "10rem",
-                    display: "block",
-                    margin: "15px auto",
-                  }}
+                <Typography variant="h6">{movie.title}</Typography>
+
+                <Grid container spacing={1} justify="center">
+                  {renderGenres(movie)}
+                </Grid>
+
+                <Box
+                  border="1px solid #51c4d3"
+                  borderRadius="10px"
+                  width="10rem"
+                  m="15px auto"
+                  p="0.3rem"
                 >
                   {ratingByMovie[movie.id] ? (
-                    <span style={{ display: "block", margin: "0 auto" }}>
-                      Rating:{" "}
-                      <span style={{ fontWeight: 600 }}>
-                        {ratingByMovie[movie.id]}
-                      </span>
-                    </span>
+                    <Box display="flex" justifyContent="center">
+                      <Typography variant="body2" component="div">
+                        Rating:{" "}
+                        <Box display="inline" fontWeight="bold">
+                          {ratingByMovie[movie.id]}
+                        </Box>
+                      </Typography>
+                    </Box>
                   ) : (
-                    <span>No rating</span>
+                    <Box>
+                      <Typography variant="body2">No rating</Typography>
+                    </Box>
                   )}
-                </p>
-                <p style={{ cursor: "pointer" }}>
-                  <span onClick={() => onClickRemove(movie.id)}>Remove</span>
-                </p>
+                </Box>
+
+                <Button
+                  onClick={() => onClickRemove(movie.id)}
+                  variant="contained"
+                  color="secondary"
+                >
+                  Remove
+                </Button>
               </CardContent>
             </Card>
           </Grid>

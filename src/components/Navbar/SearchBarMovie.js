@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 
 import { ImageIcon } from "../common/icons";
 
@@ -35,35 +36,37 @@ const SearchBarMovie = (props) => {
   });
 
   return (
-    <Box
-      className={classes.root}
-      borderRadius={`${
-        first ? "10px 10px 0px 0px" : last ? "0px 0px 10px 10px" : ""
-      }`}
-    >
-      <Avatar
-        src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-        alt="Movie poster"
-        className={classes.image}
-        variant="square"
+    <Link to={`/movie/${movie.id}`}>
+      <Box
+        className={classes.root}
+        borderRadius={`${
+          first ? "10px 10px 0px 0px" : last ? "0px 0px 10px 10px" : ""
+        }`}
       >
-        <ImageIcon />
-      </Avatar>
+        <Avatar
+          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+          alt="Movie poster"
+          className={classes.image}
+          variant="square"
+        >
+          <ImageIcon />
+        </Avatar>
 
-      <Box ml={2}>
-        <Typography variant="h6">{movie.title}</Typography>
+        <Box ml={2}>
+          <Typography variant="h6">{movie.title}</Typography>
 
-        <Typography variant="body2" component="div">
-          <Box color="text.opacity">{date}</Box>
-        </Typography>
-
-        <Box mt={1}>
-          <Typography variant="body1">
-            {movie.overview.substring(0, 135)}...
+          <Typography variant="body2" component="div">
+            <Box color="text.opacity">{date}</Box>
           </Typography>
+
+          <Box mt={1}>
+            <Typography variant="body1">
+              {movie.overview.substring(0, 135)}...
+            </Typography>
+          </Box>
         </Box>
       </Box>
-    </Box>
+    </Link>
   );
 };
 
