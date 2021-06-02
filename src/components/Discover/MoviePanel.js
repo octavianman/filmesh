@@ -23,11 +23,13 @@ const MoviePanel = (props) => {
 
   return (
     <Box>
-      <img
-        src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-        alt="Movie poster"
-        className={classes.poster}
-      />
+      <Link to={`/movie/${movie.id}`}>
+        <img
+          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+          alt="Movie poster"
+          className={classes.poster}
+        />
+      </Link>
 
       <Box mt={1}>
         <Typography variant="h6" align="center">

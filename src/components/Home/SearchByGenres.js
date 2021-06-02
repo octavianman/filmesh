@@ -12,6 +12,7 @@ const genres = [
   { title: "ADVENTURE", image: "adventure.jpg" },
   { title: "COMEDY", image: "comedy.jpg" },
   { title: "ANIMATION", image: "animation.jpg" },
+  { title: "THRILLER", image: "thriller.jpg" },
 ];
 
 const SearchByGenres = () => {
@@ -26,7 +27,7 @@ const SearchByGenres = () => {
   });
 
   return (
-    <Box p={3}>
+    <Box p={3} pb={10}>
       <Box mb={3}>
         <Typography variant="h4" align="center">
           <Box color="primary.dark">Browse by genre</Box>

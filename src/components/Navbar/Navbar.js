@@ -40,7 +40,7 @@ const Navbar = () => {
       zIndex={5}
       width="100%"
     >
-      <Box maxWidth="1430px" m="0 auto" px={3} height="70px">
+      <Box maxWidth="1550px" m="0 auto" px={3} height="70px">
         <Box
           display="flex"
           height="100%"

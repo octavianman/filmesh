@@ -71,7 +71,7 @@ let theme = createMuiTheme({
   overrides: {
     Container: {
       content: {
-        maxWidth: 1430,
+        maxWidth: 1550,
       },
     },
 

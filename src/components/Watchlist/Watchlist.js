@@ -5,7 +5,11 @@ import firebase from "firebase";
 import axios from "axios";
 import { db } from "../../services/firebase";
 
+import { ImageIcon } from "../common/icons";
+
+import { makeStyles } from "@material-ui/core/styles";
 import {
+  Avatar,
   Box,
   Button,
   Card,
@@ -13,6 +17,14 @@ import {
   Grid,
   Typography,
 } from "@material-ui/core";
+
+const useStyle = makeStyles((theme) => ({
+  image: {
+    height: "20rem",
+    width: "15rem",
+    margin: "0 auto",
+  },
+}));
 
 const getMovie = async (movieId) => {
   const response = await axios.get(
@@ -65,6 +77,7 @@ const renderGenres = (movie) => {
 };
 
 const Watchlist = () => {
+  const classes = useStyle();
   const [watchlist, setWatchlist] = useState(null);
   const [movies, setMovies] = useState([]);
   const [ratingByMovie, setRatingByMovie] = useState({});
@@ -128,19 +141,24 @@ const Watchlist = () => {
       {movies &&
         movies.map((movie) => (
           <Grid item key={movie.id} xs={3}>
-            <Card style={{ marginTop: 10, marginBottom: 10, height: "36rem" }}>
+            <Card
+              style={{
+                marginTop: 10,
+                marginBottom: 10,
+                height: "36rem",
+                borderRadius: "10px",
+              }}
+            >
               <CardContent style={{ textAlign: "center" }}>
                 <Link to={`/movie/${movie.id}`}>
-                  <img
+                  <Avatar
+                    variant="square"
                     src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
                     alt="Movie poster"
-                    style={{
-                      height: "20rem",
-                      margin: "0 auto",
-                      display: "block",
-                      marginTop: "1rem",
-                    }}
-                  />
+                    className={classes.image}
+                  >
+                    <ImageIcon />
+                  </Avatar>
                 </Link>
                 <Typography variant="h6">{movie.title}</Typography>
 
@@ -160,7 +178,7 @@ const Watchlist = () => {
                       <Typography variant="body2" component="div">
                         Rating:{" "}
                         <Box display="inline" fontWeight="bold">
-                          {ratingByMovie[movie.id]}
+                          {ratingByMovie[movie.id].toFixed(2)}
                         </Box>
                       </Typography>
                     </Box>

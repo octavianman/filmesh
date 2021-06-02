@@ -9,9 +9,7 @@ const useStyle = makeStyles((theme) => ({
   },
 
   wrapper: {
-    // marginTop: theme.overrides.Header.maxHeight,
     maxWidth: theme.overrides.Container.content.maxWidth,
-    // minHeight: `calc(100vh - ${theme.overrides.Header.maxHeight}px)`,
     minHeight: "100vh",
     margin: "0 auto",
 

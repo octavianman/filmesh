@@ -26,7 +26,7 @@ const Footer = () => {
       width="100%"
     >
       <Box
-        maxWidth="1430px"
+        maxWidth="1550px"
         m="0 auto"
         px={3}
         py={2}
