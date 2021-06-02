@@ -84,6 +84,17 @@ let theme = createMuiTheme({
         padding: "8px 16px",
       },
 
+      containedPrimary: {
+        "&&": {
+          transition: "all .2s ease-in",
+
+          "&:hover": {
+            background: "#51c4d3",
+            letterSpacing: ".5px",
+          },
+        },
+      },
+
       outlinedPrimary: {
         color: "#51c4d3",
         borderColor: "#51c4d3",
