@@ -29,7 +29,6 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 const createReview = async ({ movieId, newReview }) => {
-  console.log({ newReview });
   const updateQuery = {
     reviews: firebase.firestore.FieldValue.arrayUnion(newReview),
   };
@@ -377,7 +376,7 @@ const Movie = (props) => {
                 <Card>
                   <CardContent>
                     <Typography variant="h6">Rating: {rating}</Typography>
-                    <Typography variant="body2">
+                    <Typography variant="body2" component="div">
                       <Box color="text.opacity">
                         Given by: {review.userFirstName} {review.userLastName}
                       </Box>

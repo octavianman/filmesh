@@ -129,7 +129,7 @@ const Watchlist = () => {
   const onClickRemove = async (movieId) => {
     await removeMovieFromWatchlist(userId, movieId);
     const filteredMovies = watchlist.movies.filter((mid) => mid !== movieId);
-    console.log({ filteredMovies });
+
     setWatchlist({
       ...watchlist,
       movies: filteredMovies,
