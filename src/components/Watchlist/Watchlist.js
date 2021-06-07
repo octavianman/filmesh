@@ -111,11 +111,14 @@ const Watchlist = () => {
   useEffect(() => {
     const getRatingByMovie = async () => {
       const getRatingPromises = [];
+
       for (const movieId of watchlist.movies) {
         getRatingPromises.push(getRating(movieId));
       }
+
       const ratings = await Promise.all(getRatingPromises);
       const newRatingByMovie = {};
+
       for (let i = 0; i < ratings.length; i++) {
         newRatingByMovie[watchlist.movies[i]] = ratings[i];
       }
@@ -140,7 +143,7 @@ const Watchlist = () => {
     <Grid container spacing={2}>
       {movies &&
         movies.map((movie) => (
-          <Grid item key={movie.id} xs={3}>
+          <Grid item key={movie.id} xs={12} md={4} lg={3}>
             <Card
               style={{
                 marginTop: 10,

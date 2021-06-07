@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import axios from "axios";
+import { db } from "../../services/firebase";
 
 import SearchByGenres from "./SearchByGenres";
 
@@ -45,50 +46,77 @@ const Home = () => {
   const [topRatedMovies, setTopRatedMovies] = useState([]);
 
   useEffect(() => {
-    const getLatestMovies = async () => {
-      const response = await axios.get(
-        "https://api.themoviedb.org/3/movie/top_rated",
-        {
-          params: {
-            api_key: process.env.REACT_APP_MOVIEDB_API_KEY,
-          },
-        }
-      );
+    const getMoviesByRatings = async () => {
+      const documents = await db.collection("movies").get();
 
-      const results = response.data.results.sort(
-        (a, b) => b.vote_count - a.vote_count
-      );
+      let moviesByRatings = documents.docs.map((doc) => {
+        const reviews = doc.data().reviews;
+        const ratingSum = reviews.reduce(
+          (sum, item) => (sum += item.rating),
+          0
+        );
+        const ratingAverage = ratingSum / reviews.length;
 
-      setTopRatedMovies(results.slice(0, 4));
+        return { id: doc.id, rating: ratingAverage };
+      });
+
+      moviesByRatings = moviesByRatings.sort((a, b) => b.rating - a.rating);
+      moviesByRatings = moviesByRatings.slice(0, 4);
+
+      const movies = [];
+
+      for (const movie of moviesByRatings) {
+        const response = await axios.get(
+          `https://api.themoviedb.org/3/movie/${movie.id}`,
+          {
+            params: {
+              api_key: process.env.REACT_APP_MOVIEDB_API_KEY,
+            },
+          }
+        );
+
+        movies.push(response.data);
+      }
+      setTopRatedMovies(movies);
     };
 
-    getLatestMovies();
+    getMoviesByRatings();
   }, []);
 
   const renderedTopMovies = topRatedMovies.map((movie) => (
-    <Link to={`/movie/${movie.id}`} key={movie.id} className={classes.topRated}>
-      <Box mb={1}>
-        <Avatar
-          variant="square"
-          alt="Movie poster"
-          src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
-          className={classes.poster}
-        >
-          <ImageIcon />
-        </Avatar>
-      </Box>
+    <Grid
+      item
+      xs={12}
+      sm={6}
+      md={6}
+      lg={3}
+      key={movie.id}
+      className={classes.topRated}
+    >
+      <Link to={`/movie/${movie.id}`}>
+        <Box mb={1}>
+          <Avatar
+            variant="square"
+            alt="Movie poster"
+            src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`}
+            className={classes.poster}
+          >
+            <ImageIcon />
+          </Avatar>
+        </Box>
 
-      <Typography variant="h5" align="center">
-        {movie.title}
-      </Typography>
-      <Typography variant="h5" align="center">
-        {new Date(movie.release_date).getFullYear()}
-      </Typography>
-    </Link>
+        <Typography variant="h5" align="center">
+          {movie.title}
+        </Typography>
+        <Typography variant="h5" align="center">
+          {new Date(movie.release_date).getFullYear()}
+        </Typography>
+      </Link>
+    </Grid>
   ));
 
   return (
-    <Box pb={7}>
+    <Box pb={8}>
       <Grid container>
         <Grid item xs={12} md={3}>
           <Box borderRight="2px solid #EAEEF9" minHeight="calc(100vh - 132px)">
@@ -119,9 +147,7 @@ const Home = () => {
               <Typography variant="h2">Find out top rated</Typography>
             </Box>
 
-            <Grid container justify="space-between">
-              {renderedTopMovies}
-            </Grid>
+            <Grid container>{renderedTopMovies}</Grid>
           </Box>
         </Grid>
       </Grid>
